@@ -1,0 +1,221 @@
+//longest sub-polindrome
+class Solution {
+    public String longestPalindrome(String s) {
+        String longest="";
+        int maxsize=0;
+        for(int i=0;i<s.length();i++){
+            for(int j=i+1;j<s,length();j++){
+                String p=s.subString(i,j);
+                if(polindrome&&p.length()>maxlength){
+                    longest=p;
+                    maxlength=p.length();
+                }
+            }
+        }
+  public   boolean polindrome(p){
+        String l="";
+        String original=p;
+        for(int k=0;k<p.length();k++){
+            char c=p.charAt(k);
+            l=c+l;
+        }
+       
+            if(original.){
+                return false;
+            }
+        }
+    }
+   return true;
+
+    }
+}}
+
+
+
+//////////////////Student management system:
+Student class///////////
+package Details;
+
+public class Student {
+
+	private String name;
+	private int age;
+	
+	
+	private String grade;
+	public Student(String name,int age,String grade) {
+		this.name=name;
+		this.grade=grade;
+		
+		this.age=age;
+		
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", age=" + age + ", grade=" + grade + ", getAge()=" + getAge() + ", getName()="
+				+ getName() + ", getGrade()=" + getGrade() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
+
+}
+
+methods////////////
+package Details;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Map.Entry;
+
+import Details.Show_functionalities;
+public class Add_student {
+	Scanner in=new Scanner(System.in);
+	Map<Integer, Student> obj = new HashMap<>();
+		int id = 1;
+		public void Add() {
+			  System.out.println("Enter Student Name:");
+              String name = in.next(); 
+              System.out.println("Enter Student Age:");
+              int age = in.nextInt(); 
+              System.out.println("Enter Student Grade:");
+              String grade = in.next();
+              obj.put(id,new Student(name,age,grade));
+              System.out.println(name + " is saved successfully ");
+              id++;
+		}
+		public void update() {
+			System.out.println("Enter ID to update:");
+            int updateId = in.nextInt();                   
+            if (obj.containsKey(updateId)) {
+                System.out.println("Enter new name:");
+                String newName = in.next();
+                System.out.println("Enter new Grade :");
+                String newGrade=in.next();
+                in.nextLine();
+                System.out.println("Enter new Age");
+                int newAge=in.nextInt();
+                obj.put(updateId, new Student(newName,newAge,newGrade)); 
+                System.out.println("Updated successfully to " + newName);
+            } else {
+                System.out.println("ID is not present in the data.");
+            }
+		}
+            public void delete() {
+            	System.out.println("Enter id to delete:");
+                int deleteId = in.nextInt();
+                if (obj.containsKey(deleteId)) {
+                    obj.remove(deleteId);
+                    System.out.println( deleteId + " is deleted successfully.");
+                } else {
+                    System.out.println("Invalid ID.");
+                }
+            }
+            public void search() {
+            	System.out.println("Enter ID to search:");
+                int searchId = in.nextInt();
+                for(Entry<Integer, Student> r:obj.entrySet()) {
+                	Student student=r.getValue();
+
+                	if(searchId==r.getKey()) {
+                		System.out.println("Name :"+student.getName()+" Age :"+student.getAge()+" Grade :"+student.getGrade());
+                	}
+                	else {
+                		System.out.println("Student id not found");
+                	}
+                }
+            }
+            
+            public void getall() {
+                if (obj.isEmpty()) {
+                    System.out.println("No students in the record.");
+                } else {
+                    for (Entry<Integer, Student> entry : obj.entrySet()) {
+                    	Student student=entry.getValue();
+                        System.out.println("ID: " + entry.getKey() + " Name: "+student.getName()+" Age :"+student.getAge()+" Grade :"+student.getGrade());
+                    }
+                }
+            }
+		}
+
+main class////////////////
+	package Details;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+
+public class Assessment {
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Map<Integer, Student> obj = new HashMap<>();
+        int id = 1;
+        Add_student obj1=new Add_student();
+        while (true) {
+            System.out.println("1. Add Student");
+            System.out.println("2. Update Student");
+            System.out.println("3. Delete Student");
+            System.out.println("4. Search for Student");
+            System.out.println("5. Display All Students");
+            System.out.println("6. Exit");
+            System.out.println("Enter your option :");
+
+            int option = in.nextInt();
+            in.nextLine(); 
+
+            switch (option) {
+                case 1: {
+                   obj1.Add();
+                    break;
+                }
+                case 2: {
+                    obj1.update();
+                    break;
+                }
+                case 3: {
+                    obj1.delete();
+                    break;
+                }
+                case 4: {
+                    obj1.search();
+                    break;
+                }
+                case 5: {
+                    obj1.getall();
+                    break;
+                }
+                case 6: {
+                    System.out.println("Exiting the program.");
+                    System.exit(0);
+                    return;
+                }
+                default :{
+                	System.err.println("Invalid option");
+                }
+            
+                }
+            }
+        }
+    
+}
+
+
+
